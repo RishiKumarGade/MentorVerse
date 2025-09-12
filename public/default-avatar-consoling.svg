@@ -1,0 +1,44 @@
+<svg width="256" height="256" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <style>
+      .consoling-bg { fill: #fef2f2; stroke: #ef4444; stroke-width: 2; }
+      .consoling-face { fill: #dc2626; }
+      .consoling-mouth { fill: none; stroke: #dc2626; stroke-width: 3; stroke-linecap: round; }
+      .heart { fill: #f87171; stroke: #dc2626; stroke-width: 1; }
+      .support-text { fill: #dc2626; font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; }
+      .eyebrow { fill: none; stroke: #dc2626; stroke-width: 3; stroke-linecap: round; }
+      
+      .heart-beat {
+        animation: heartbeat 2s infinite ease-in-out;
+        transform-origin: center;
+      }
+      
+      @keyframes heartbeat {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+      }
+    </style>
+  </defs>
+  
+  <!-- Head circle -->
+  <circle cx="128" cy="128" r="120" class="consoling-bg"/>
+  
+  <!-- Sympathetic eyebrows -->
+  <path d="M 100 95 Q 110 88 120 95" class="eyebrow"/>
+  <path d="M 136 95 Q 146 88 156 95" class="eyebrow"/>
+  
+  <!-- Gentle eyes -->
+  <circle cx="110" cy="110" r="8" class="consoling-face"/>
+  <circle cx="146" cy="110" r="8" class="consoling-face"/>
+  
+  <!-- Sympathetic mouth -->
+  <path d="M 118 155 Q 128 148 138 155" class="consoling-mouth"/>
+  
+  <!-- Supportive heart -->
+  <g class="heart-beat">
+    <path d="M 190 85 C 190 80, 185 75, 180 75 C 175 75, 170 80, 170 85 C 170 80, 165 75, 160 75 C 155 75, 150 80, 150 85 C 150 95, 170 110, 170 110 C 170 110, 190 95, 190 85 Z" class="heart"/>
+  </g>
+  
+  <!-- Support message -->
+  <text x="70" y="200" class="support-text">It's OK!</text>
+</svg>

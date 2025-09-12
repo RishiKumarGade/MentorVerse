@@ -1,0 +1,28 @@
+<svg width="256" height="256" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <style>
+      .asking-bg { fill: #fef3c7; stroke: #f59e0b; stroke-width: 2; }
+      .asking-face { fill: #d97706; }
+      .asking-mouth { fill: none; stroke: #d97706; stroke-width: 3; stroke-linecap: round; }
+      .question-mark { fill: #d97706; font-family: Arial, sans-serif; font-size: 48px; font-weight: bold; }
+      .eyebrow { fill: none; stroke: #d97706; stroke-width: 3; stroke-linecap: round; }
+    </style>
+  </defs>
+  
+  <!-- Head circle -->
+  <circle cx="128" cy="128" r="120" class="asking-bg"/>
+  
+  <!-- Questioning eyebrows -->
+  <path d="M 100 95 Q 110 85 120 95" class="eyebrow"/>
+  <path d="M 136 95 Q 146 85 156 95" class="eyebrow"/>
+  
+  <!-- Face -->
+  <circle cx="110" cy="110" r="8" class="asking-face"/>
+  <circle cx="146" cy="110" r="8" class="asking-face"/>
+  
+  <!-- Curious mouth -->
+  <ellipse cx="128" cy="150" rx="8" ry="6" class="asking-face"/>
+  
+  <!-- Question mark -->
+  <text x="195" y="85" text-anchor="middle" class="question-mark">?</text>
+</svg>

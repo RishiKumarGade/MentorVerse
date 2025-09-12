@@ -1,0 +1,29 @@
+<svg width="256" height="256" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <style>
+      .loading-bg { fill: #f3f4f6; stroke: #e5e7eb; stroke-width: 2; }
+      .loading-face { fill: #6b7280; }
+      .loading-dots { fill: #3b82f6; }
+      .dot1 { animation: bounce 1.4s infinite ease-in-out both; animation-delay: -0.32s; }
+      .dot2 { animation: bounce 1.4s infinite ease-in-out both; animation-delay: -0.16s; }
+      .dot3 { animation: bounce 1.4s infinite ease-in-out both; }
+      
+      @keyframes bounce {
+        0%, 80%, 100% { transform: scale(0); }
+        40% { transform: scale(1); }
+      }
+    </style>
+  </defs>
+  
+  <!-- Head circle -->
+  <circle cx="128" cy="128" r="120" class="loading-bg"/>
+  
+  <!-- Face -->
+  <circle cx="110" cy="110" r="8" class="loading-face"/>
+  <circle cx="146" cy="110" r="8" class="loading-face"/>
+  
+  <!-- Thinking dots -->
+  <circle cx="105" cy="155" r="6" class="loading-dots dot1"/>
+  <circle cx="128" cy="155" r="6" class="loading-dots dot2"/>
+  <circle cx="151" cy="155" r="6" class="loading-dots dot3"/>
+</svg>

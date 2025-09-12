@@ -1,0 +1,28 @@
+<svg width="256" height="256" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <style>
+      .explaining-bg { fill: #dbeafe; stroke: #3b82f6; stroke-width: 2; }
+      .explaining-face { fill: #1d4ed8; }
+      .explaining-mouth { fill: none; stroke: #1d4ed8; stroke-width: 3; stroke-linecap: round; }
+      .speech-bubble { fill: #ffffff; stroke: #3b82f6; stroke-width: 2; }
+      .bubble-text { fill: #1d4ed8; font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Head circle -->
+  <circle cx="128" cy="128" r="120" class="explaining-bg"/>
+  
+  <!-- Face -->
+  <circle cx="110" cy="110" r="8" class="explaining-face"/>
+  <circle cx="146" cy="110" r="8" class="explaining-face"/>
+  
+  <!-- Smiling mouth -->
+  <path d="M 110 145 Q 128 165 146 145" class="explaining-mouth"/>
+  
+  <!-- Speech bubble -->
+  <ellipse cx="180" cy="80" rx="45" ry="25" class="speech-bubble"/>
+  <path d="M 155 95 L 145 105 L 160 100 Z" class="speech-bubble"/>
+  
+  <!-- Exclamation in bubble -->
+  <text x="180" y="88" text-anchor="middle" class="bubble-text">!</text>
+</svg>

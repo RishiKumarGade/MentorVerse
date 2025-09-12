@@ -1,0 +1,48 @@
+<svg width="256" height="256" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <style>
+      .praising-bg { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; }
+      .praising-face { fill: #15803d; }
+      .praising-mouth { fill: none; stroke: #15803d; stroke-width: 4; stroke-linecap: round; }
+      .star { fill: #fbbf24; stroke: #f59e0b; stroke-width: 1; }
+      .celebration { fill: #16a34a; font-family: Arial, sans-serif; font-size: 28px; }
+      
+      .star-sparkle {
+        animation: sparkle 2s infinite ease-in-out;
+        transform-origin: center;
+      }
+      .star-sparkle:nth-child(1) { animation-delay: 0s; }
+      .star-sparkle:nth-child(2) { animation-delay: 0.5s; }
+      .star-sparkle:nth-child(3) { animation-delay: 1s; }
+      
+      @keyframes sparkle {
+        0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+        50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+      }
+    </style>
+  </defs>
+  
+  <!-- Head circle -->
+  <circle cx="128" cy="128" r="120" class="praising-bg"/>
+  
+  <!-- Happy eyes -->
+  <path d="M 100 105 Q 110 95 120 105" fill="none" stroke="#15803d" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 136 105 Q 146 95 156 105" fill="none" stroke="#15803d" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Big smile -->
+  <path d="M 105 140 Q 128 175 151 140" class="praising-mouth"/>
+  
+  <!-- Celebration stars -->
+  <g class="star-sparkle">
+    <path d="M 70 70 L 75 80 L 85 80 L 77 87 L 80 97 L 70 92 L 60 97 L 63 87 L 55 80 L 65 80 Z" class="star"/>
+  </g>
+  <g class="star-sparkle">
+    <path d="M 190 60 L 195 70 L 205 70 L 197 77 L 200 87 L 190 82 L 180 87 L 183 77 L 175 70 L 185 70 Z" class="star"/>
+  </g>
+  <g class="star-sparkle">
+    <path d="M 200 150 L 205 160 L 215 160 L 207 167 L 210 177 L 200 172 L 190 177 L 193 167 L 185 160 L 195 160 Z" class="star"/>
+  </g>
+  
+  <!-- Thumbs up -->
+  <text x="60" y="180" class="celebration">👍</text>
+</svg>
