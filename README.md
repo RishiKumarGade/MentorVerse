@@ -1,4 +1,4 @@
-# AI Tutor - Personalized Learning Platform
+# MentorVerse - Personalized Learning Platform
 
 A comprehensive AI-powered learning platform with theme-based avatar companions, built with Next.js 14, TypeScript, and Gemini AI.
 
