@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#1a1a1a" stroke="#22c55e" stroke-width="3"/>
+  
+  <!-- Victory aura -->
+  <circle cx="100" cy="100" r="85" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.4">
+    <animate attributeName="r" values="80;90;80" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.2;0.6;0.2" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Batman head silhouette -->
+  <g transform="translate(100,80)">
+    <!-- Head -->
+    <ellipse cx="0" cy="0" rx="35" ry="40" fill="#2c2c2c"/>
+    
+    <!-- Bat ears -->
+    <path d="M-20,-30 Q-15,-50 -5,-35 Q0,-40 5,-35 Q15,-50 20,-30 Q15,-25 0,-30 Q-15,-25 -20,-30 Z" fill="#1a1a1a"/>
+    
+    <!-- Happy eyes -->
+    <ellipse cx="-12" cy="-8" rx="6" ry="4" fill="#22c55e"/>
+    <ellipse cx="12" cy="-8" rx="6" ry="4" fill="#22c55e"/>
+    
+    <!-- Celebration stars -->
+    <g transform="translate(-45,-25)">
+      <text x="0" y="0" text-anchor="middle" font-size="16" fill="#ffd700">⭐</text>
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        values="0 -45 -25;360 -45 -25"
+        dur="3s"
+        repeatCount="indefinite"/>
+    </g>
+    
+    <g transform="translate(45,-35)">
+      <text x="0" y="0" text-anchor="middle" font-size="14" fill="#22c55e">✨</text>
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        values="360 45 -35;0 45 -35"
+        dur="2s"
+        repeatCount="indefinite"/>
+    </g>
+  </g>
+  
+  <!-- Victory badge -->
+  <g transform="translate(100,160)">
+    <circle cx="0" cy="0" r="15" fill="#22c55e"/>
+    <text x="0" y="4" text-anchor="middle" font-size="16" fill="#1a1a1a">🏆</text>
+  </g>
+</svg>

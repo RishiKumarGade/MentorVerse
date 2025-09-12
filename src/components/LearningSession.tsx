@@ -374,102 +374,91 @@ export default function LearningSession({ course, onExit }: LearningSessionProps
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
-      {/* Immersive Header */}
-      <header className="relative z-50">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
-        <div className="relative backdrop-blur-sm border-b border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={onExit}
-                  className="p-2 hover:bg-white/10 rounded-xl transition-all duration-300 group"
-                >
-                  <ChevronLeftIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                </button>
-                <div>
-                  <h1 className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                    {course.title}
-                  </h1>
-                  <p className="text-sm text-gray-400">
-                    {currentTopic.topic}
-                  </p>
-                </div>
+    <div className="min-h-screen gradient-bg">
+      {/* Header */}
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={onExit}
+                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <ChevronLeftIcon className="w-5 h-5 text-gray-600" />
+              </button>
+              <div>
+                <h1 className="text-xl font-bold text-gray-900">
+                  {course.title}
+                </h1>
+                <p className="text-sm text-gray-500">
+                  {currentTopic.topic}
+                </p>
               </div>
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={() => setShowDoubtPanel(true)}
-                  className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/30 rounded-xl hover:from-amber-500/30 hover:to-orange-500/30 transition-all duration-300"
-                  title="Ask a doubt"
-                >
-                  <HelpCircleIcon className="w-4 h-4" />
-                  <span className="text-sm font-medium">Need Help?</span>
-                </button>
-                <div className="w-32 h-2 bg-white/10 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500 ease-out"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-                <span className="text-sm font-medium text-gray-300">
-                  {Math.round(progress)}%
-                </span>
+            </div>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setShowDoubtPanel(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-lg hover:bg-amber-100 transition-colors"
+                title="Ask a doubt"
+              >
+                <HelpCircleIcon className="w-4 h-4 text-amber-600" />
+                <span className="text-sm font-medium text-amber-700">Need Help?</span>
+              </button>
+              <div className="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-500 ease-out"
+                  style={{ width: `${progress}%` }}
+                />
               </div>
+              <span className="text-sm font-medium text-gray-600">
+                {Math.round(progress)}%
+              </span>
             </div>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="relative min-h-screen">
-        {/* Background Effects */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-40 right-20 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-green-500/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid lg:grid-cols-4 gap-8">
-            {/* Compact Syllabus Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl sticky top-8 max-h-[calc(100vh-6rem)] overflow-y-auto">
-              <div className="p-4 mb-6">
-                <h2 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                  <BookIcon className="w-5 h-5 text-blue-400" />
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid lg:grid-cols-4 gap-8">
+          {/* Syllabus Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 sticky top-8 max-h-[calc(100vh-6rem)] overflow-y-auto">
+              <div className="p-4 border-b border-gray-200">
+                <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+                  <BookIcon className="w-5 h-5 text-blue-500" />
                   Syllabus
                 </h2>
                 {course.totalDuration && (
-                  <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                     <ClockIcon className="w-4 h-4" />
                     {course.totalDuration}
                   </div>
                 )}
-                <div className="w-full bg-white/10 rounded-full h-1 mb-3">
+                <div className="w-full bg-gray-200 rounded-full h-1 mb-3">
                   <div 
                     className="bg-gradient-to-r from-blue-500 to-purple-500 h-1 rounded-full transition-all duration-500"
                     style={{ width: `${progress}%` }}
                   />
                 </div>
-                <div className="text-xs font-medium text-gray-300 mb-4">
+                <div className="text-xs font-medium text-gray-600 mb-4">
                   {Math.round(progress)}% Complete
                 </div>
               </div>
               
-              <div className="px-4 pb-4 space-y-2">
+              <div className="p-4 space-y-2">
                 {course.syllabus.map((topic, topicIdx) => {
                   const isCurrentTopic = topicIdx === currentTopicIndex;
                   const isCompletedTopic = topicIdx < currentTopicIndex;
                   
                   return (
                     <div key={topicIdx} className="space-y-1">
-                      <div className={`flex items-center gap-2 p-2 rounded-lg transition-all ${
+                      <div className={`flex items-center gap-2 p-2 rounded-lg transition-colors ${
                         isCurrentTopic 
-                          ? 'bg-blue-500/20 border-l-2 border-blue-400'
+                          ? 'bg-blue-50 border-l-2 border-blue-500'
                           : isCompletedTopic
-                          ? 'bg-green-500/20 border-l-2 border-green-400'
-                          : 'bg-white/5'
+                          ? 'bg-green-50 border-l-2 border-green-500'
+                          : 'hover:bg-gray-50'
                       }`}>
                         <div className="flex-shrink-0">
                           {isCompletedTopic ? (
@@ -481,12 +470,12 @@ export default function LearningSession({ course, onExit }: LearningSessionProps
                           )}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className={`text-xs font-medium truncate ${
+                          <h3 className={`text-sm font-medium truncate ${
                             isCurrentTopic
-                              ? 'text-blue-300'
+                              ? 'text-blue-900'
                               : isCompletedTopic
-                              ? 'text-green-300'
-                              : 'text-gray-400'
+                              ? 'text-green-900'
+                              : 'text-gray-700'
                           }`}>
                             {topicIdx + 1}. {topic.topic}
                           </h3>
@@ -506,7 +495,7 @@ export default function LearningSession({ course, onExit }: LearningSessionProps
                           return (
                             <div 
                               key={subtopicIdx} 
-                              className={`flex items-center gap-2 p-1 rounded text-xs transition-all ${
+                              className={`flex items-center gap-2 p-1 rounded text-xs transition-colors ${
                                 isCurrentSubtopic
                                   ? 'bg-blue-100 text-blue-800'
                                   : isCompletedSubtopic
@@ -537,16 +526,16 @@ export default function LearningSession({ course, onExit }: LearningSessionProps
             </div>
           </div>
             
-            {/* Character Tutor Section */}
+            {/* Avatar Section */}
             <div className="lg:col-span-1">
-              <div className="relative h-96 flex items-end justify-center">
-                <Avatar size="character" showAsCharacter={true} className="drop-shadow-2xl" />
-                
-                {/* Character Speech Bubble */}
-                <div className="absolute top-8 right-4 max-w-xs">
-                  <div className="relative">
-                    <div className="backdrop-blur-sm bg-white/90 text-gray-800 p-3 rounded-2xl rounded-br-sm shadow-xl">
-                      <p className="text-sm font-medium">
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <div className="flex flex-col items-center">
+                  <div className="relative w-32 h-32 mb-4">
+                    <Avatar size="character" showAsCharacter={true} className="w-full h-full" />
+                  </div>
+                  <div className="text-center">
+                    <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                      <p className="text-sm text-gray-700">
                         {avatarState === 'loading' && "Let me think about this..."}
                         {avatarState === 'explaining' && "Let me explain this concept!"}
                         {avatarState === 'asking' && "Ready for a question?"}
@@ -554,368 +543,285 @@ export default function LearningSession({ course, onExit }: LearningSessionProps
                         {avatarState === 'consoling' && "Don't worry, let's try again!"}
                       </p>
                     </div>
-                    <div className="absolute bottom-0 right-2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white/90"></div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Modern Content Section */}
+            {/* Content Section */}
             <div className="lg:col-span-2">
-              <div className="relative">
-                {/* Content Background */}
-                <div className="absolute inset-0 backdrop-blur-sm bg-white/5 border border-white/10 rounded-3xl"></div>
-                
-                <div className="relative z-10 p-8">
-              {!showQuestions && !showMCQs && (
-                <div>
-                  <div className="mb-8">
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-3 flex items-center gap-3">
-                      <BookOpenIcon className="w-8 h-8 text-blue-400" />
-                      {currentSubtopic.name}
-                    </h2>
-                    <p className="text-white/70 text-lg">{currentSubtopic.description}</p>
-                  </div>
-                  
-                  <div className="relative">
-                    {isLoadingContent ? (
-                      <div className="flex flex-col items-center justify-center py-16">
-                        <div className="relative">
-                          <div className="animate-spin rounded-full h-16 w-16 border-4 border-blue-500/30 border-t-blue-400"></div>
-                          <div className="absolute inset-0 animate-ping rounded-full h-16 w-16 border-2 border-blue-400/20"></div>
-                        </div>
-                        <p className="mt-6 text-white/70 text-lg">Loading content...</p>
-                        <div className="mt-2 flex space-x-1">
-                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                          <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse animation-delay-200"></div>
-                          <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse animation-delay-400"></div>
-                        </div>
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+                <div className="p-6">
+                  {!showQuestions && !showMCQs && (
+                    <div>
+                      <div className="mb-6">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                          <BookOpenIcon className="w-6 h-6 text-blue-500" />
+                          {currentSubtopic.name}
+                        </h2>
+                        <p className="text-gray-600">{currentSubtopic.description}</p>
                       </div>
-                    ) : currentSubtopic.content?.explanations ? (
-                      <div className="relative">
-                        <div className="absolute inset-0 backdrop-blur-sm bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-white/10 rounded-3xl"></div>
-                        <div className="relative z-10 p-8">
-                          <p className="text-xl leading-relaxed text-white/90 mb-8 font-light">
-                            {currentSubtopic.content.explanations[currentExplanationIndex]}
-                          </p>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="text-center py-12">
-                        <div className="text-6xl mb-4">📚</div>
-                        <p className="text-white/60 text-lg">Content not available yet</p>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="flex justify-between items-center mt-8">
-                    <div className="text-white/60 text-sm flex items-center gap-2">
-                      <span className="w-2 h-2 bg-blue-400 rounded-full"></span>
-                      Step {currentExplanationIndex + 1} of {totalExplanations}
-                    </div>
-                    <button
-                      onClick={nextExplanation}
-                      disabled={isLoadingContent}
-                      className="group relative overflow-hidden px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-full font-medium transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3"
-                    >
-                      <span className="relative z-10">
-                        {currentExplanationIndex < totalExplanations - 1 ? 'Next' : 'Practice Questions'}
-                      </span>
-                      <ChevronRightIcon className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                      <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {showQuestions && !showMCQs && (
-                <div>
-                  <div className="mb-8">
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-green-400 via-emerald-500 to-teal-500 bg-clip-text text-transparent mb-3 flex items-center gap-3">
-                      <HelpCircleIcon className="w-8 h-8 text-green-400" />
-                      Practice Time! 🎯
-                    </h2>
-                    <p className="text-white/70 text-lg">Test your understanding with these practice questions</p>
-                  </div>
-                  
-                  {(() => {
-                    const currentQuestion = currentSubtopic.content?.questions?.[currentQuestionIndex];
-                    if (!currentQuestion) return <div>Loading question...</div>;
-
-                    return (
-                      <div className="mb-8">
-                        <div className="relative mb-8">
-                          <div className="absolute inset-0 backdrop-blur-sm bg-gradient-to-br from-green-500/10 via-emerald-500/10 to-teal-500/10 border border-white/10 rounded-3xl"></div>
-                          <div className="relative z-10 p-6">
-                            <p className="text-xl font-medium text-white/90 leading-relaxed">
-                              {currentQuestion.question}
+                      
+                      <div className="mb-6">
+                        {isLoadingContent ? (
+                          <div className="flex flex-col items-center justify-center py-12">
+                            <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500/30 border-t-blue-500 mb-4"></div>
+                            <p className="text-gray-600">Loading content...</p>
+                          </div>
+                        ) : currentSubtopic.content?.explanations ? (
+                          <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                            <p className="text-lg leading-relaxed text-gray-800">
+                              {currentSubtopic.content.explanations[currentExplanationIndex]}
                             </p>
                           </div>
-                        </div>
-                        <div className="space-y-4">
-                          {currentQuestion.options.map((option, index) => (
-                            <button
-                              key={index}
-                              onClick={() => !showAnswer && handlePracticeAnswer(index)}
-                              disabled={showAnswer}
-                              className={`group relative w-full p-5 text-left rounded-2xl transition-all duration-300 transform hover:scale-[1.02] ${
-                                showAnswer
-                                  ? index === currentQuestion.correct
-                                    ? 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-400 text-white shadow-lg shadow-green-500/20'
-                                    : index === selectedAnswer
-                                    ? 'bg-gradient-to-r from-red-500/20 to-pink-500/20 border-2 border-red-400 text-white shadow-lg shadow-red-500/20'
-                                    : 'bg-white/5 border border-white/10 text-white/60'
-                                  : selectedAnswer === index
-                                  ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-2 border-blue-400 text-white shadow-lg shadow-blue-500/20'
-                                  : 'bg-white/5 border border-white/10 text-white/90 hover:bg-white/10 hover:border-white/20'
-                              }`}
-                            >
-                              <div className="flex items-center gap-4">
-                                <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
-                                  showAnswer
-                                    ? index === currentQuestion.correct
-                                      ? 'bg-green-500 text-white'
-                                      : index === selectedAnswer
-                                      ? 'bg-red-500 text-white'
-                                      : 'bg-white/10 text-white/50'
-                                    : selectedAnswer === index
-                                    ? 'bg-blue-500 text-white'
-                                    : 'bg-white/10 text-white/80 group-hover:bg-white/20'
-                                }`}>
-                                  {String.fromCharCode(65 + index)}
-                                </span>
-                                <span className="flex-1 text-base font-medium">{option}</span>
-                                {showAnswer && index === currentQuestion.correct && (
-                                  <CheckCircleIcon className="w-6 h-6 text-green-400 animate-bounce" />
-                                )}
-                                {showAnswer && index === selectedAnswer && index !== currentQuestion.correct && (
-                                  <XCircleIcon className="w-6 h-6 text-red-400 animate-pulse" />
-                                )}
-                              </div>
-                            </button>
-                          ))}
-                        </div>
-
-                        {showAnswer && (
-                          <div className="mt-6">
-                            <div className={`relative overflow-hidden p-6 rounded-2xl ${
-                              selectedAnswer === currentQuestion.correct 
-                                ? 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30'
-                                : 'bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-400/30'
-                            }`}>
-                              <p className={`text-lg font-bold mb-4 ${
-                                selectedAnswer === currentQuestion.correct
-                                  ? 'text-green-100'
-                                  : 'text-red-100'
-                              }`}>
-                                {selectedAnswer === currentQuestion.correct ? '🎉 Correct! Well done!' : '💡 Not quite right, but that\'s okay!'}
-                              </p>
-                              {/* Show explanation from MCQ if available, otherwise AI suggestion */}
-                              {currentQuestion.explanation && selectedAnswer !== currentQuestion.correct && (
-                                <div className="mt-4 p-4 bg-amber-500/20 rounded-xl border border-amber-400/30">
-                                  <div className="flex items-start gap-3">
-                                    <span className="text-amber-300 text-lg mt-0.5">📝</span>
-                                    <div>
-                                      <p className="text-sm font-bold text-amber-200 mb-2">Explanation:</p>
-                                      <p className="text-sm text-amber-100 leading-relaxed">{currentQuestion.explanation}</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-                              {aiSuggestion && !currentQuestion.explanation && (
-                                <div className="mt-4 p-4 bg-blue-500/20 rounded-xl border border-blue-400/30">
-                                  <div className="flex items-start gap-3">
-                                    <span className="text-blue-300 text-lg mt-0.5">💡</span>
-                                    <div>
-                                      <p className="text-sm font-bold text-blue-200 mb-2">AI Tutor Says:</p>
-                                      <p className="text-sm text-blue-100 leading-relaxed">{aiSuggestion}</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-                              {isLoadingSuggestion && (
-                                <div className="mt-4 p-4 bg-blue-500/20 rounded-xl border border-blue-400/30">
-                                  <div className="flex items-center gap-3">
-                                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-blue-400/30 border-t-blue-300"></div>
-                                    <span className="text-sm text-blue-200">AI tutor is thinking...</span>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
+                        ) : (
+                          <div className="text-center py-8">
+                            <div className="text-4xl mb-2">📚</div>
+                            <p className="text-gray-500">Content not available yet</p>
                           </div>
                         )}
                       </div>
-                    );
-                  })()}
 
-                  <div className="flex justify-between items-center mt-8">
-                    <div className="text-white/60 text-sm flex items-center gap-2">
-                      <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                      Question {currentQuestionIndex + 1} of {totalQuestions}
-                    </div>
-                    {!showAnswer && (
-                      <div className="text-white/50 text-sm flex items-center gap-2">
-                        <span className="animate-pulse">💭</span>
-                        Select an answer to continue
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {showMCQs && (
-                <div>
-                  <div className="mb-8">
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-rose-500 bg-clip-text text-transparent mb-3 flex items-center gap-3">
-                      <CheckCircleIcon className="w-8 h-8 text-purple-400" />
-                      Quiz Challenge! 🎆
-                    </h2>
-                    <p className="text-white/70 text-lg">Show what you've learned with this comprehensive quiz</p>
-                  </div>
-                  
-                  {isLoadingQuiz ? (
-                    <div className="flex flex-col items-center justify-center py-16">
-                      <div className="relative">
-                        <div className="animate-spin rounded-full h-16 w-16 border-4 border-purple-500/30 border-t-purple-400"></div>
-                        <div className="absolute inset-0 animate-ping rounded-full h-16 w-16 border-2 border-purple-400/20"></div>
-                      </div>
-                      <p className="mt-6 text-white/70 text-lg">Loading quiz...</p>
-                      <div className="mt-2 flex space-x-1">
-                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-                        <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse animation-delay-200"></div>
-                        <div className="w-2 h-2 bg-rose-400 rounded-full animate-pulse animation-delay-400"></div>
+                      <div className="flex justify-between items-center">
+                        <div className="text-gray-500 text-sm flex items-center gap-2">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                          Step {currentExplanationIndex + 1} of {totalExplanations}
+                        </div>
+                        <button
+                          onClick={nextExplanation}
+                          disabled={isLoadingContent}
+                          className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                        >
+                          {currentExplanationIndex < totalExplanations - 1 ? 'Next' : 'Practice Questions'}
+                          <ChevronRightIcon className="w-4 h-4" />
+                        </button>
                       </div>
                     </div>
-                  ) : (() => {
-                    const mcq = getCurrentMCQ();
-                    if (!mcq) return (
-                      <div className="text-center py-12">
-                        <div className="text-6xl mb-4">🤔</div>
-                        <p className="text-white/60 text-lg">No quiz questions available</p>
+                  )}
+
+                  {showQuestions && !showMCQs && (
+                    <div>
+                      <div className="mb-6">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                          <HelpCircleIcon className="w-6 h-6 text-green-500" />
+                          Practice Time! 🎯
+                        </h2>
+                        <p className="text-gray-600">Test your understanding with these practice questions</p>
                       </div>
-                    );
+                      
+                      {(() => {
+                        const currentQuestion = currentSubtopic.content?.questions?.[currentQuestionIndex];
+                        if (!currentQuestion) return <div className="text-gray-600">Loading question...</div>;
 
-                    return (
-                      <div className="mb-8">
-                        <div className="relative mb-8">
-                          <div className="absolute inset-0 backdrop-blur-sm bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-rose-500/10 border border-white/10 rounded-3xl"></div>
-                          <div className="relative z-10 p-6">
-                            <p className="text-xl font-medium text-white/90 leading-relaxed">
-                              {mcq.question}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="space-y-4">
-                          {mcq.options.map((option, index) => (
-                            <button
-                              key={index}
-                              onClick={() => !showQuizAnswer && handleMCQAnswer(index)}
-                              disabled={showQuizAnswer}
-                              className={`group relative w-full p-5 text-left rounded-2xl transition-all duration-300 transform hover:scale-[1.02] ${
-                                showQuizAnswer
-                                  ? index === mcq.correct
-                                    ? 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-2 border-green-400 text-white shadow-lg shadow-green-500/20'
-                                    : index === selectedQuizAnswer
-                                    ? 'bg-gradient-to-r from-red-500/20 to-pink-500/20 border-2 border-red-400 text-white shadow-lg shadow-red-500/20'
-                                    : 'bg-white/5 border border-white/10 text-white/60'
-                                  : selectedQuizAnswer === index
-                                  ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 border-2 border-purple-400 text-white shadow-lg shadow-purple-500/20'
-                                  : 'bg-white/5 border border-white/10 text-white/90 hover:bg-white/10 hover:border-white/20'
-                              }`}
-                            >
-                              <div className="flex items-center gap-4">
-                                <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${
-                                  showQuizAnswer
-                                    ? index === mcq.correct
-                                      ? 'bg-green-500 text-white'
-                                      : index === selectedQuizAnswer
-                                      ? 'bg-red-500 text-white'
-                                      : 'bg-white/10 text-white/50'
-                                    : selectedQuizAnswer === index
-                                    ? 'bg-purple-500 text-white'
-                                    : 'bg-white/10 text-white/80 group-hover:bg-white/20'
-                                }`}>
-                                  {String.fromCharCode(65 + index)}
-                                </span>
-                                <span className="flex-1 text-base font-medium">{option}</span>
-                                {showQuizAnswer && index === mcq.correct && (
-                                  <CheckCircleIcon className="w-6 h-6 text-green-400 animate-bounce" />
-                                )}
-                                {showQuizAnswer && index === selectedQuizAnswer && index !== mcq.correct && (
-                                  <XCircleIcon className="w-6 h-6 text-red-400 animate-pulse" />
-                                )}
-                              </div>
-                            </button>
-                          ))}
-                        </div>
-
-                        {showQuizAnswer && (
-                          <div className="mt-6">
-                            <div className={`relative overflow-hidden p-6 rounded-2xl ${
-                              selectedQuizAnswer === mcq.correct 
-                                ? 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30'
-                                : 'bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-400/30'
-                            }`}>
-                              <p className={`text-lg font-bold mb-4 ${
-                                selectedQuizAnswer === mcq.correct
-                                  ? 'text-green-100'
-                                  : 'text-red-100'
-                              }`}>
-                                {selectedQuizAnswer === mcq.correct ? '🎉 Excellent! You nailed it!' : '🎯 Good try! Let\'s learn from this.'}
+                        return (
+                          <div className="mb-6">
+                            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 mb-4">
+                              <p className="text-lg font-medium text-gray-900">
+                                {currentQuestion.question}
                               </p>
-                              {/* Show explanation from MCQ if available, otherwise AI suggestion */}
-                              {(() => {
-                                const mcq = getCurrentMCQ();
-                                return mcq?.explanation && selectedQuizAnswer !== mcq.correct ? (
-                                  <div className="mt-4 p-4 bg-amber-500/20 rounded-xl border border-amber-400/30">
-                                    <div className="flex items-start gap-3">
-                                      <span className="text-amber-300 text-lg mt-0.5">📝</span>
-                                      <div>
-                                        <p className="text-sm font-bold text-amber-200 mb-2">Explanation:</p>
-                                        <p className="text-sm text-amber-100 leading-relaxed">{mcq.explanation}</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                ) : quizAiSuggestion ? (
-                                  <div className="mt-4 p-4 bg-purple-500/20 rounded-xl border border-purple-400/30">
-                                    <div className="flex items-start gap-3">
-                                      <span className="text-purple-300 text-lg mt-0.5">🎓</span>
-                                      <div>
-                                        <p className="text-sm font-bold text-purple-200 mb-2">AI Tutor Explains:</p>
-                                        <p className="text-sm text-purple-100 leading-relaxed">{quizAiSuggestion}</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                ) : null;
-                              })()}
-                              {isLoadingSuggestion && (
-                                <div className="mt-4 p-4 bg-purple-500/20 rounded-xl border border-purple-400/30">
-                                  <div className="flex items-center gap-3">
-                                    <div className="animate-spin rounded-full h-5 w-5 border-2 border-purple-400/30 border-t-purple-300"></div>
-                                    <span className="text-sm text-purple-200">AI tutor is preparing an explanation...</span>
-                                  </div>
-                                </div>
-                              )}
                             </div>
+                            <div className="space-y-3">
+                              {currentQuestion.options.map((option, index) => (
+                                <button
+                                  key={index}
+                                  onClick={() => !showAnswer && handlePracticeAnswer(index)}
+                                  disabled={showAnswer}
+                                  className={`w-full p-4 text-left rounded-lg border transition-colors ${
+                                    showAnswer
+                                      ? index === currentQuestion.correct
+                                        ? 'bg-green-50 border-green-500 text-green-900'
+                                        : index === selectedAnswer
+                                        ? 'bg-red-50 border-red-500 text-red-900'
+                                        : 'bg-gray-50 border-gray-300 text-gray-500'
+                                      : selectedAnswer === index
+                                      ? 'bg-blue-50 border-blue-500 text-blue-900'
+                                      : 'bg-white border-gray-300 text-gray-900 hover:bg-gray-50'
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                                      showAnswer
+                                        ? index === currentQuestion.correct
+                                          ? 'bg-green-500 text-white'
+                                          : index === selectedAnswer
+                                          ? 'bg-red-500 text-white'
+                                          : 'bg-gray-400 text-white'
+                                        : selectedAnswer === index
+                                        ? 'bg-blue-500 text-white'
+                                        : 'bg-gray-300 text-gray-700'
+                                    }`}>
+                                      {String.fromCharCode(65 + index)}
+                                    </span>
+                                    <span className="flex-1">{option}</span>
+                                    {showAnswer && index === currentQuestion.correct && (
+                                      <CheckCircleIcon className="w-5 h-5 text-green-500" />
+                                    )}
+                                    {showAnswer && index === selectedAnswer && index !== currentQuestion.correct && (
+                                      <XCircleIcon className="w-5 h-5 text-red-500" />
+                                    )}
+                                  </div>
+                                </button>
+                              ))}
+                            </div>
+
+                            {showAnswer && (
+                              <div className="mt-4">
+                                <div className={`p-4 rounded-lg border ${
+                                  selectedAnswer === currentQuestion.correct 
+                                    ? 'bg-green-50 border-green-200'
+                                    : 'bg-red-50 border-red-200'
+                                }`}>
+                                  <p className={`font-bold mb-2 ${
+                                    selectedAnswer === currentQuestion.correct
+                                      ? 'text-green-800'
+                                      : 'text-red-800'
+                                  }`}>
+                                    {selectedAnswer === currentQuestion.correct ? '🎉 Correct! Well done!' : '💡 Not quite right, but that\'s okay!'}
+                                  </p>
+                                  {/* Show explanation from MCQ if available, otherwise AI suggestion */}
+                                  {currentQuestion.explanation && selectedAnswer !== currentQuestion.correct && (
+                                    <div className="mt-3 p-3 bg-amber-50 rounded-lg border border-amber-200">
+                                      <div className="flex items-start gap-2">
+                                        <span className="text-amber-600 text-sm mt-0.5">📝</span>
+                                        <div>
+                                          <p className="text-sm font-semibold text-amber-800 mb-1">Explanation:</p>
+                                          <p className="text-sm text-amber-700">{currentQuestion.explanation}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                  {aiSuggestion && !currentQuestion.explanation && (
+                                    <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                                      <div className="flex items-start gap-2">
+                                        <span className="text-blue-600 text-sm mt-0.5">💡</span>
+                                        <div>
+                                          <p className="text-sm font-semibold text-blue-800 mb-1">AI Tutor Says:</p>
+                                          <p className="text-sm text-blue-700">{aiSuggestion}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
+                                  {isLoadingSuggestion && (
+                                    <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                                      <div className="flex items-center gap-2">
+                                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-blue-400/30 border-t-blue-600"></div>
+                                        <span className="text-sm text-blue-600">AI tutor is thinking...</span>
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })()}
+
+                      <div className="flex justify-between items-center mt-4">
+                        <div className="text-gray-500 text-sm flex items-center gap-2">
+                          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                          Question {currentQuestionIndex + 1} of {totalQuestions}
+                        </div>
+                        {!showAnswer && (
+                          <div className="text-gray-500 text-sm flex items-center gap-2">
+                            <span className="animate-pulse">💭</span>
+                            Select an answer to continue
                           </div>
                         )}
                       </div>
-                    );
-                  })()}
-
-                  <div className="flex justify-between items-center mt-8">
-                    <div className="text-white/60 text-sm flex items-center gap-2">
-                      <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
-                      Question {currentMCQIndex + 1} of {totalMCQs}
                     </div>
-                  </div>
-                </div>
-              )}
+                  )}
+
+                  {showMCQs && (
+                    <div>
+                      <div className="mb-6">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                          <CheckCircleIcon className="w-6 h-6 text-purple-500" />
+                          Quiz Challenge! 🎆
+                        </h2>
+                        <p className="text-gray-600">Show what you've learned with this comprehensive quiz</p>
+                      </div>
+                  
+                      {isLoadingQuiz ? (
+                        <div className="flex flex-col items-center justify-center py-12">
+                          <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-500/30 border-t-purple-500 mb-4"></div>
+                          <p className="text-gray-600">Loading quiz...</p>
+                        </div>
+                      ) : (() => {
+                        const mcq = getCurrentMCQ();
+                        if (!mcq) return (
+                          <div className="text-center py-8">
+                            <div className="text-4xl mb-2">🤔</div>
+                            <p className="text-gray-500">No quiz questions available</p>
+                          </div>
+                        );
+
+                        return (
+                          <div className="mb-6">
+                            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 mb-4">
+                              <p className="text-lg font-medium text-gray-900">
+                                {mcq.question}
+                              </p>
+                            </div>
+                            {/* MCQ Options similar to practice questions */}
+                            <div className="space-y-3 mb-4">
+                              {mcq.options.map((option, index) => (
+                                <button
+                                  key={index}
+                                  onClick={() => !showQuizAnswer && handleMCQAnswer(index)}
+                                  disabled={showQuizAnswer}
+                                  className={`w-full p-4 text-left rounded-lg border transition-colors ${
+                                    showQuizAnswer
+                                      ? index === mcq.correct
+                                        ? 'bg-green-50 border-green-500 text-green-900'
+                                        : index === selectedQuizAnswer
+                                        ? 'bg-red-50 border-red-500 text-red-900'
+                                        : 'bg-gray-50 border-gray-300 text-gray-500'
+                                      : selectedQuizAnswer === index
+                                      ? 'bg-purple-50 border-purple-500 text-purple-900'
+                                      : 'bg-white border-gray-300 text-gray-900 hover:bg-gray-50'
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                                      showQuizAnswer
+                                        ? index === mcq.correct
+                                          ? 'bg-green-500 text-white'
+                                          : index === selectedQuizAnswer
+                                          ? 'bg-red-500 text-white'
+                                          : 'bg-gray-400 text-white'
+                                        : selectedQuizAnswer === index
+                                        ? 'bg-purple-500 text-white'
+                                        : 'bg-gray-300 text-gray-700'
+                                    }`}>
+                                      {String.fromCharCode(65 + index)}
+                                    </span>
+                                    <span className="flex-1">{option}</span>
+                                    {showQuizAnswer && index === mcq.correct && (
+                                      <CheckCircleIcon className="w-5 h-5 text-green-500" />
+                                    )}
+                                    {showQuizAnswer && index === selectedQuizAnswer && index !== mcq.correct && (
+                                      <XCircleIcon className="w-5 h-5 text-red-500" />
+                                    )}
+                                  </div>
+                                </button>
+                              ))}
+                            </div>
+
+                            <div className="flex justify-between items-center">
+                              <div className="text-gray-500 text-sm flex items-center gap-2">
+                                <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                                Question {currentMCQIndex + 1} of {totalMCQs}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })()}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
-        </div>
       </main>
       
       {/* Doubt Panel */}

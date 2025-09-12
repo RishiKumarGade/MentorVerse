@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#1a1a1a" stroke="#ffd700" stroke-width="2"/>
+  
+  <!-- Batman head silhouette -->
+  <g transform="translate(100,80)">
+    <!-- Head -->
+    <ellipse cx="0" cy="0" rx="35" ry="40" fill="#2c2c2c"/>
+    
+    <!-- Bat ears -->
+    <path d="M-20,-30 Q-15,-50 -5,-35 Q0,-40 5,-35 Q15,-50 20,-30 Q15,-25 0,-30 Q-15,-25 -20,-30 Z" fill="#1a1a1a"/>
+    
+    <!-- Eyes (curious) -->
+    <circle cx="-12" cy="-8" r="4" fill="#ffd700"/>
+    <circle cx="12" cy="-8" r="4" fill="#ffd700"/>
+    
+    <!-- Question mark -->
+    <g transform="translate(45,-10)">
+      <circle cx="0" cy="0" r="18" fill="#ffd700" opacity="0.9"/>
+      <text x="0" y="6" text-anchor="middle" font-size="24" font-weight="bold" fill="#1a1a1a">?</text>
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        values="0 45 -10;10 45 -10;-10 45 -10;0 45 -10"
+        dur="2s"
+        repeatCount="indefinite"/>
+    </g>
+  </g>
+  
+  <!-- Quiz indicator -->
+  <g transform="translate(100,160)">
+    <rect x="-20" y="-8" width="40" height="16" rx="8" fill="#0066cc" opacity="0.8"/>
+    <text x="0" y="2" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffd700">QUIZ</text>
+  </g>
+</svg>

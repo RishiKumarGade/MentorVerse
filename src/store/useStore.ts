@@ -11,9 +11,20 @@ const DEFAULT_AVATAR_IMAGES = {
   consoling: '/default-avatar-consoling.svg',
 };
 
-// Helper function to get avatar image with fallback
+// Helper function to get avatar image with proper fallback
 function getAvatarImage(theme: Theme, state: keyof typeof DEFAULT_AVATAR_IMAGES): string {
-  return theme.images[state] || DEFAULT_AVATAR_IMAGES[state];
+  // First try theme-specific image
+  if (theme.images[state]) {
+    return theme.images[state];
+  }
+  
+  // Then try default fallback image
+  if (DEFAULT_AVATAR_IMAGES[state]) {
+    return DEFAULT_AVATAR_IMAGES[state];
+  }
+  
+  // Final fallback - return a data URL or placeholder
+  return '/default-avatar-loading.svg';
 }
 
 // Default themes
@@ -24,11 +35,11 @@ const defaultThemes: Theme[] = [
     displayName: 'Batman',
     description: 'Learn with the Dark Knight',
     images: {
-      loading: '/themes/batman/loading.png',
-      explaining: '/themes/batman/explaining.png',
-      asking: '/themes/batman/asking.png',
-      praising: '/themes/batman/praising.png',
-      consoling: '/themes/batman/consoling.png',
+      loading: '/themes/batman/loading.svg',
+      explaining: '/themes/batman/explaining.svg',
+      asking: '/themes/batman/asking.svg',
+      praising: '/themes/batman/praising.svg',
+      consoling: '/themes/batman/consoling.svg',
     },
     audio: '/themes/batman/focus.mp3',
     colors: {

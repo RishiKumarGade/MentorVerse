@@ -19,6 +19,38 @@ const sizeClasses = {
   character: 'w-full h-full max-w-sm max-h-96',
 };
 
+// Helper function to get character emoji based on theme
+const getCharacterEmoji = (themeName: string): string => {
+  switch (themeName) {
+    case 'batman':
+      return '🦇';
+    case 'naruto':
+      return '🥷';
+    case 'minimal':
+      return '🤖';
+    default:
+      return '🎓';
+  }
+};
+
+// Helper function to get state emoji
+const getStateEmoji = (state: AvatarState): string => {
+  switch (state) {
+    case 'loading':
+      return '🤔';
+    case 'explaining':
+      return '📚';
+    case 'asking':
+      return '❓';
+    case 'praising':
+      return '🎉';
+    case 'consoling':
+      return '💪';
+    default:
+      return '🤖';
+  }
+};
+
 const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsCharacter = false }) => {
   const avatarState = useAvatarState();
   const theme = useTheme();
@@ -27,9 +59,11 @@ const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsChar
 
   // Get the current image path with fallback
   const currentImagePath = getAvatarImage(theme, avatarState);
+  const isSVG = currentImagePath.endsWith('.svg');
 
   // Handle image loading errors
-  const handleImageError = () => {
+  const handleImageError = (error: any) => {
+    console.warn(`Avatar image failed to load: ${currentImagePath}`, error);
     setImageError(true);
   };
 
@@ -54,24 +88,56 @@ const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsChar
         <div className="relative">
           <div className={`${sizeClasses[size]} mx-auto relative`}>
             {!imageError ? (
-              <Image
-                src={currentImagePath}
-                alt={`${theme.displayName} - ${avatarState}`}
-                fill
-                className="object-contain drop-shadow-2xl"
-                onError={handleImageError}
-                priority={avatarState === 'loading'}
-              />
+              isSVG ? (
+                // For SVG files, use img tag for better compatibility
+                <img
+                  src={currentImagePath}
+                  alt={`${theme.displayName} - ${avatarState}`}
+                  className="w-full h-full object-contain drop-shadow-2xl"
+                  onError={handleImageError}
+                  style={{ 
+                    imageRendering: 'crisp-edges',
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    display: 'block'
+                  }}
+                />
+              ) : (
+                // For other formats, use Next.js Image
+                <Image
+                  src={currentImagePath}
+                  alt={`${theme.displayName} - ${avatarState}`}
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                  onError={handleImageError}
+                  priority={avatarState === 'loading'}
+                />
+              )
             ) : (
               <div 
-                className="w-full h-full flex items-end justify-center relative"
-                style={{ background: `linear-gradient(135deg, ${theme.colors.primary}20, ${theme.colors.accent}20)` }}
+                className="w-full h-full flex items-center justify-center relative rounded-2xl border-4 border-dashed bg-red-500/20"
+                style={{ 
+                  background: `linear-gradient(135deg, ${theme.colors.primary}40, ${theme.colors.accent}40)`,
+                  borderColor: theme.colors.accent,
+                  minHeight: '200px',
+                  minWidth: '200px'
+                }}
               >
-                <div 
-                  className="text-6xl font-bold mb-8"
-                  style={{ color: theme.colors.primary }}
-                >
-                  {theme.displayName.charAt(0)}
+                <div className="text-center p-4">
+                  <div className="text-red-500 font-bold mb-2">FALLBACK</div>
+                  <div 
+                    className="text-8xl font-bold mb-4"
+                    style={{ color: theme.colors.primary }}
+                  >
+                    {getCharacterEmoji(theme.name)}
+                  </div>
+                  <div className="text-lg font-semibold" style={{ color: theme.colors.accent }}>
+                    {theme.displayName}
+                  </div>
+                  <div className="text-sm opacity-75 capitalize mt-1" style={{ color: theme.colors.primary }}>
+                    {getStateEmoji(avatarState)} {avatarState}
+                  </div>
+                  <div className="text-xs mt-2 text-gray-500 break-all">Path: {currentImagePath}</div>
                 </div>
               </div>
             )}
@@ -174,15 +240,30 @@ const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsChar
         borderStyle: 'solid',
       }}
     >
-      <Image
-        src={currentImagePath}
-        alt={`${theme.displayName} - ${avatarState}`}
-        fill
-        className="avatar-image"
-        onError={handleImageError}
-        priority={avatarState === 'loading'}
-        sizes={`${sizeClasses[size].split(' ')[0]}`}
-      />
+      {isSVG ? (
+        <img
+          src={currentImagePath}
+          alt={`${theme.displayName} - ${avatarState}`}
+          className="avatar-image w-full h-full object-cover rounded-full"
+          onError={handleImageError}
+          style={{ 
+            imageRendering: 'crisp-edges',
+            maxWidth: '100%',
+            maxHeight: '100%',
+            display: 'block'
+          }}
+        />
+      ) : (
+        <Image
+          src={currentImagePath}
+          alt={`${theme.displayName} - ${avatarState}`}
+          fill
+          className="avatar-image"
+          onError={handleImageError}
+          priority={avatarState === 'loading'}
+          sizes={`${sizeClasses[size].split(' ')[0]}`}
+        />
+      )}
       
       {/* Loading indicator for loading state */}
       {avatarState === 'loading' && (

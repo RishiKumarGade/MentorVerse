@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#1a1a1a" stroke="#ffd700" stroke-width="2"/>
+  
+  <!-- Batman head silhouette -->
+  <g transform="translate(100,80)">
+    <!-- Head -->
+    <ellipse cx="0" cy="0" rx="35" ry="40" fill="#2c2c2c"/>
+    
+    <!-- Bat ears -->
+    <path d="M-20,-30 Q-15,-50 -5,-35 Q0,-40 5,-35 Q15,-50 20,-30 Q15,-25 0,-30 Q-15,-25 -20,-30 Z" fill="#1a1a1a"/>
+    
+    <!-- Eyes -->
+    <circle cx="-12" cy="-8" r="4" fill="#ffd700"/>
+    <circle cx="12" cy="-8" r="4" fill="#ffd700"/>
+    
+    <!-- Thinking indicator -->
+    <g transform="translate(40,-20)">
+      <circle cx="0" cy="0" r="12" fill="#ffd700" opacity="0.8"/>
+      <text x="0" y="2" text-anchor="middle" font-size="14" font-weight="bold" fill="#1a1a1a">?</text>
+    </g>
+  </g>
+  
+  <!-- Loading text -->
+  <g transform="translate(100,160)">
+    <text x="0" y="0" text-anchor="middle" font-size="12" font-weight="bold" fill="#ffd700">THINKING</text>
+  </g>
+</svg>

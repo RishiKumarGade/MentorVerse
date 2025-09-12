@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#1a1a1a"/>
+  
+  <!-- Batman silhouette -->
+  <g transform="translate(200,200)">
+    <!-- Cape -->
+    <path d="M-80,-60 Q-120,-40 -100,100 L-60,120 L-40,80 L0,90 L40,80 L60,120 L100,100 Q120,-40 80,-60 Q60,-80 0,-70 Q-60,-80 -80,-60 Z" fill="#2c2c2c"/>
+    
+    <!-- Head -->
+    <circle cx="0" cy="-20" r="40" fill="#4a4a4a"/>
+    
+    <!-- Bat ears -->
+    <path d="M-25,-45 Q-15,-65 -5,-50 Q0,-55 5,-50 Q15,-65 25,-45 Q20,-35 0,-40 Q-20,-35 -25,-45 Z" fill="#2c2c2c"/>
+    
+    <!-- Eyes (glowing) -->
+    <circle cx="-12" cy="-25" r="4" fill="#ffd700"/>
+    <circle cx="12" cy="-25" r="4" fill="#ffd700"/>
+    
+    <!-- Thinking indicator for loading state -->
+    <g transform="translate(50,-40)">
+      <circle cx="0" cy="0" r="8" fill="#ffd700" opacity="0.8"/>
+      <text x="0" y="2" text-anchor="middle" font-size="10" fill="#1a1a1a">?</text>
+    </g>
+  </g>
+  
+  <!-- Loading dots -->
+  <g transform="translate(200,320)">
+    <circle cx="-20" cy="0" r="5" fill="#ffd700">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="5" fill="#ffd700">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="20" cy="0" r="5" fill="#ffd700">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

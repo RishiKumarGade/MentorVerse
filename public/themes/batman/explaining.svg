@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#1a1a1a" stroke="#ffd700" stroke-width="2"/>
+  
+  <!-- Batman head silhouette -->
+  <g transform="translate(100,80)">
+    <!-- Head -->
+    <ellipse cx="0" cy="0" rx="35" ry="40" fill="#2c2c2c"/>
+    
+    <!-- Bat ears -->
+    <path d="M-20,-30 Q-15,-50 -5,-35 Q0,-40 5,-35 Q15,-50 20,-30 Q15,-25 0,-30 Q-15,-25 -20,-30 Z" fill="#1a1a1a"/>
+    
+    <!-- Eyes -->
+    <circle cx="-12" cy="-8" r="4" fill="#ffd700"/>
+    <circle cx="12" cy="-8" r="4" fill="#ffd700"/>
+    
+    <!-- Knowledge aura -->
+    <circle cx="0" cy="0" r="50" fill="none" stroke="#ffd700" stroke-width="2" opacity="0.6">
+      <animate attributeName="r" values="45;55;45" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Light bulb indicator -->
+    <g transform="translate(-40,-20)">
+      <circle cx="0" cy="0" r="12" fill="#ffd700" opacity="0.9"/>
+      <text x="0" y="3" text-anchor="middle" font-size="14" fill="#1a1a1a">💡</text>
+    </g>
+  </g>
+  
+  <!-- Book/teaching icon -->
+  <g transform="translate(100,160)">
+    <rect x="-15" y="-8" width="30" height="16" rx="2" fill="#ffd700" opacity="0.8"/>
+    <line x1="-10" y1="-4" x2="10" y2="-4" stroke="#1a1a1a" stroke-width="1"/>
+    <line x1="-10" y1="0" x2="10" y2="0" stroke="#1a1a1a" stroke-width="1"/>
+    <line x1="-10" y1="4" x2="5" y2="4" stroke="#1a1a1a" stroke-width="1"/>
+  </g>
+</svg>
