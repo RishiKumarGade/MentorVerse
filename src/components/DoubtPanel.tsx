@@ -70,72 +70,99 @@ export default function DoubtPanel({ courseId, context, isOpen, onClose }: Doubt
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] flex flex-col">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      </div>
+      
+      <div className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border border-white/10 rounded-3xl max-w-2xl w-full max-h-[80vh] flex flex-col shadow-2xl">
+        {/* Background glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-r from-amber-500/5 via-blue-500/5 to-purple-500/5 rounded-3xl" />
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <HelpCircleIcon className="w-6 h-6 text-blue-600" />
+        <div className="relative z-10 flex items-center justify-between p-6 border-b border-white/10">
+          <div className="flex items-center gap-4">
+            <div className="relative">
+              <div className="absolute inset-0 bg-amber-400/20 rounded-xl blur-sm" />
+              <div className="relative p-3 bg-gradient-to-br from-amber-400/20 to-orange-400/20 border border-amber-400/30 rounded-xl">
+                <HelpCircleIcon className="w-7 h-7 text-amber-400" />
+              </div>
             </div>
-            <h2 className="text-xl font-bold text-gray-900">Ask Your Doubt</h2>
+            <div>
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Ask Your Doubt</h2>
+              <p className="text-white/60 text-sm mt-1">Get instant clarification from your AI tutor</p>
+            </div>
           </div>
           <button
             onClick={handleClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="p-3 hover:bg-white/10 rounded-xl transition-all duration-300 hover:scale-110 group"
           >
-            <XIcon className="w-5 h-5 text-gray-500" />
+            <XIcon className="w-6 h-6 text-white/70 group-hover:text-white" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex-1 p-6 overflow-y-auto">
+        <div className="relative z-10 flex-1 p-6 overflow-y-auto">
           {!doubtAnswer ? (
             /* Doubt Input Form */
-            <form onSubmit={handleSubmitDoubt} className="space-y-4">
+            <form onSubmit={handleSubmitDoubt} className="space-y-6">
               <div>
-                <label htmlFor="doubt" className="block text-sm font-medium text-gray-700 mb-2">
-                  What would you like to clarify? 🤔
+                <label htmlFor="doubt" className="block text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                  <span className="text-2xl">🤔</span>
+                  What would you like to clarify?
                 </label>
-                <textarea
-                  id="doubt"
-                  value={doubtQuestion}
-                  onChange={(e) => setDoubtQuestion(e.target.value)}
-                  placeholder="e.g., I don't understand how this concept works in practice..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
-                  rows={4}
-                  disabled={isLoading}
-                />
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-white/10 rounded-2xl blur-sm" />
+                  <textarea
+                    id="doubt"
+                    value={doubtQuestion}
+                    onChange={(e) => setDoubtQuestion(e.target.value)}
+                    placeholder="e.g., I don't understand how this concept works in practice..."
+                    className="relative w-full px-6 py-4 bg-white/5 border border-white/20 rounded-2xl focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50 outline-none transition-all duration-300 resize-none text-white placeholder-white/50 backdrop-blur-sm"
+                    rows={4}
+                    disabled={isLoading}
+                  />
+                </div>
               </div>
 
               {error && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <p className="text-red-800 text-sm">{error}</p>
+                <div className="relative">
+                  <div className="absolute inset-0 bg-red-500/10 rounded-2xl blur-sm" />
+                  <div className="relative p-4 bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-400/30 rounded-2xl">
+                    <p className="text-red-200 flex items-center gap-2">
+                      <span className="text-xl">⚠️</span>
+                      {error}
+                    </p>
+                  </div>
                 </div>
               )}
 
-              <div className="flex gap-3">
+              <div className="flex gap-4">
                 <button
                   type="submit"
                   disabled={isLoading || !doubtQuestion.trim()}
-                  className="flex-1 theme-button primary-button py-3 flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="group relative flex-1 py-4 px-6 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3 shadow-lg shadow-amber-500/25"
                 >
-                  {isLoading ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                      Getting Clarification...
-                    </>
-                  ) : (
-                    <>
-                      <SendIcon className="w-4 h-4" />
-                      Ask Doubt
-                    </>
-                  )}
+                  <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-2xl" />
+                  <span className="relative z-10 flex items-center gap-3">
+                    {isLoading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-2 border-white/30 border-t-white" />
+                        Getting Clarification...
+                      </>
+                    ) : (
+                      <>
+                        <SendIcon className="w-5 h-5" />
+                        Ask Doubt
+                      </>
+                    )}
+                  </span>
                 </button>
                 <button
                   type="button"
                   onClick={handleClose}
-                  className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="px-8 py-4 bg-white/5 border border-white/20 hover:bg-white/10 hover:border-white/30 text-white rounded-2xl font-medium transition-all duration-300 transform hover:scale-105"
                   disabled={isLoading}
                 >
                   Cancel
@@ -144,36 +171,51 @@ export default function DoubtPanel({ courseId, context, isOpen, onClose }: Doubt
             </form>
           ) : (
             /* Doubt Answer Display */
-            <div className="space-y-4">
-              <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <h4 className="font-medium text-blue-900 mb-2">Your Question:</h4>
-                <p className="text-blue-800">{doubtQuestion}</p>
-              </div>
-
-              <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-                <h4 className="font-medium text-green-900 mb-2 flex items-center gap-2">
-                  💡 Clarification:
-                </h4>
-                <div className="text-green-800 whitespace-pre-wrap leading-relaxed">
-                  {doubtAnswer}
+            <div className="space-y-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-blue-500/10 rounded-2xl blur-sm" />
+                <div className="relative p-6 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/30 rounded-2xl">
+                  <h4 className="font-bold text-blue-200 mb-3 flex items-center gap-2 text-lg">
+                    <span className="text-2xl">🤔</span>
+                    Your Question:
+                  </h4>
+                  <p className="text-blue-100 leading-relaxed">{doubtQuestion}</p>
                 </div>
               </div>
 
-              <div className="flex gap-3">
+              <div className="relative">
+                <div className="absolute inset-0 bg-green-500/10 rounded-2xl blur-sm" />
+                <div className="relative p-6 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30 rounded-2xl">
+                  <h4 className="font-bold text-green-200 mb-4 flex items-center gap-2 text-lg">
+                    <span className="text-2xl">💡</span>
+                    AI Tutor's Clarification:
+                  </h4>
+                  <div className="text-green-100 whitespace-pre-wrap leading-relaxed text-base">
+                    {doubtAnswer}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
                 <button
                   onClick={() => {
                     setDoubtAnswer('');
                     setDoubtQuestion('');
                   }}
-                  className="flex-1 theme-button secondary-button py-3"
+                  className="group relative flex-1 py-4 px-6 bg-white/5 border border-white/20 hover:bg-white/10 hover:border-white/30 text-white rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3"
                 >
+                  <span className="text-xl">❓</span>
                   Ask Another Question
                 </button>
                 <button
                   onClick={handleClose}
-                  className="flex-1 theme-button primary-button py-3"
+                  className="group relative flex-1 py-4 px-6 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 shadow-lg shadow-green-500/25"
                 >
-                  Continue Learning
+                  <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-2xl" />
+                  <span className="relative z-10 flex items-center gap-3">
+                    <span className="text-xl">🚀</span>
+                    Continue Learning
+                  </span>
                 </button>
               </div>
             </div>
@@ -181,9 +223,10 @@ export default function DoubtPanel({ courseId, context, isOpen, onClose }: Doubt
         </div>
 
         {/* Context Info */}
-        <div className="p-4 bg-gray-50 border-t">
-          <p className="text-xs text-gray-600">
-            💡 Your AI tutor has context from the current lesson to provide relevant clarifications.
+        <div className="relative z-10 p-4 border-t border-white/10 bg-gradient-to-r from-white/5 to-white/10">
+          <p className="text-sm text-white/70 flex items-center gap-2">
+            <span className="text-amber-400">🧠</span>
+            Your AI tutor has context from the current lesson to provide relevant clarifications.
           </p>
         </div>
       </div>
