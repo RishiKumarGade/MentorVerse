@@ -59,7 +59,7 @@ const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsChar
 
   // Get the current image path with fallback
   const currentImagePath = getAvatarImage(theme, avatarState);
-  const isSVG = currentImagePath.endsWith('.svg');
+  const isSVG = currentImagePath.endsWith('.png');
 
   // Handle image loading errors
   const handleImageError = (error: any) => {

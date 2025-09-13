@@ -35,8 +35,8 @@ const defaultThemes: Theme[] = [
     displayName: 'Batman',
     description: 'Learn with the Dark Knight',
     images: {
-      loading: '/themes/batman/loading.svg',
-      explaining: '/themes/batman/explaining.svg',
+      loading: '/themes/batman/loading.png',
+      explaining: '/themes/batman/explaining.png',
       asking: '/themes/batman/asking.svg',
       praising: '/themes/batman/praising.svg',
       consoling: '/themes/batman/consoling.svg',
