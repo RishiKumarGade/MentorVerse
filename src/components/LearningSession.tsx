@@ -681,15 +681,30 @@ export default function LearningSession({ course, onExit }: LearningSessionProps
                       <div className="flex items-center gap-3">
                         <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></div>
                         <span className="text-gray-600 font-medium">Step {currentExplanationIndex + 1} of {totalExplanations}</span>
+                      </div >
+                      <div className="flex justify-start items-center gap-x-4">
+                        <button
+                          disabled={isLoadingContent}
+                          onClick={() => {
+                            if (currentExplanationIndex > 0) {
+                              setCurrentExplanationIndex(currentExplanationIndex - 1);
+                            }}
+                          }
+                          className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-xl font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 shadow-lg hover:shadow-xl transform hover:scale-105"
+                        >
+                            Previous
+                            <ChevronLeftIcon className="w-5 h-5" />
+                        </button>
+                        <button
+                          // onClick={nextExplanation}
+                          onClick={nextExplanation}
+                          disabled={isLoadingContent}
+                          className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-xl font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 shadow-lg hover:shadow-xl transform hover:scale-105"
+                        >
+                          {currentExplanationIndex < totalExplanations - 1 ? 'Next' : 'Practice Questions'}
+                          <ChevronRightIcon className="w-5 h-5" />
+                        </button>
                       </div>
-                      <button
-                        onClick={nextExplanation}
-                        disabled={isLoadingContent}
-                        className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-xl font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-3 shadow-lg hover:shadow-xl transform hover:scale-105"
-                      >
-                        {currentExplanationIndex < totalExplanations - 1 ? 'Next' : 'Practice Questions'}
-                        <ChevronRightIcon className="w-5 h-5" />
-                      </button>
                     </div>
                   </div>
                 )}
