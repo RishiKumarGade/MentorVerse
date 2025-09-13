@@ -8,10 +8,10 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'AI Tutor - Personalized Learning with Avatar Companions',
+  title: 'MentorVerse - Personalized Learning with Avatar Companions',
   description: 'Learn anything with AI-powered personalized courses and theme-based avatar companions',
   keywords: ['AI', 'education', 'learning', 'tutor', 'personalized', 'avatar'],
-  authors: [{ name: 'AI Tutor Team' }],
+  authors: [{ name: 'MentorVerse Team' }],
 };
 
 export const viewport = {

@@ -28,13 +28,13 @@ function cleanMarkdownResponse(text: string): string {
 }
 
 // Course Generation Prompts
-const COURSE_OUTLINE_SYSTEM_PROMPT = 'You are an expert AI tutor that creates comprehensive course outlines and syllabi. You must output content in strict JSON format. Your goal is to create a well-structured learning syllabus that includes: 1. A comprehensive course overview with clear learning objectives 2. Detailed topic breakdown with logical progression 3. Subtopics with clear descriptions and learning goals 4. Duration estimates and difficulty assessment. Focus on creating a clear, logical learning path without generating detailed content yet. The detailed explanations and questions will be generated separately for each subtopic.';
+const COURSE_OUTLINE_SYSTEM_PROMPT = 'You are an expert MentorVerse that creates comprehensive course outlines and syllabi. You must output content in strict JSON format. Your goal is to create a well-structured learning syllabus that includes: 1. A comprehensive course overview with clear learning objectives 2. Detailed topic breakdown with logical progression 3. Subtopics with clear descriptions and learning goals 4. Duration estimates and difficulty assessment. Focus on creating a clear, logical learning path without generating detailed content yet. The detailed explanations and questions will be generated separately for each subtopic.';
 
-const SUBTOPIC_CONTENT_SYSTEM_PROMPT = 'You are an expert AI tutor creating detailed learning content for a specific subtopic. You must output content in strict JSON format. Your goal is to create comprehensive, engaging content that includes: 1. Detailed explanations with practical examples and real-world applications 2. Step-by-step processes or technical details where appropriate 3. Practice questions for immediate understanding 4. Key takeaways and important notes. Make the content practical, engaging, and appropriate for the user level.';
+const SUBTOPIC_CONTENT_SYSTEM_PROMPT = 'You are an expert MentorVerse creating detailed learning content for a specific subtopic. You must output content in strict JSON format. Your goal is to create comprehensive, engaging content that includes: 1. Detailed explanations with practical examples and real-world applications 2. Step-by-step processes or technical details where appropriate 3. Practice questions for immediate understanding 4. Key takeaways and important notes. Make the content practical, engaging, and appropriate for the user level.';
 
-const TOPIC_QUIZ_SYSTEM_PROMPT = 'You are an expert AI tutor creating comprehensive quiz questions for a complete topic. You must output content in strict JSON format. Your goal is to create assessment questions that: 1. Test comprehensive understanding of the entire topic 2. Cover all important concepts from the subtopics 3. Include questions of varying difficulty 4. Provide clear explanations for correct answers. Create questions that truly assess mastery of the topic.';
+const TOPIC_QUIZ_SYSTEM_PROMPT = 'You are an expert MentorVerse creating comprehensive quiz questions for a complete topic. You must output content in strict JSON format. Your goal is to create assessment questions that: 1. Test comprehensive understanding of the entire topic 2. Cover all important concepts from the subtopics 3. Include questions of varying difficulty 4. Provide clear explanations for correct answers. Create questions that truly assess mastery of the topic.';
 
-const DOUBT_CLARIFICATION_SYSTEM_PROMPT = 'You are an AI tutor helping students clarify their doubts. Provide clear, concise explanations based on the context provided. Answer in a conversational, encouraging tone. Keep your response focused and helpful.';
+const DOUBT_CLARIFICATION_SYSTEM_PROMPT = 'You are an MentorVerse helping students clarify their doubts. Provide clear, concise explanations based on the context provided. Answer in a conversational, encouraging tone. Keep your response focused and helpful.';
 
 export async function generateCourseOutline(request: CourseGenerationRequest): Promise<CourseOutlineResponse> {
   try {
@@ -267,7 +267,7 @@ export async function generateMCQSuggestion(request: {
     
     const contextText = request.context.join(' ');
     
-    const promptText = 'You are a helpful AI tutor providing personalized learning guidance.\n\n' +
+    const promptText = 'You are a helpful MentorVerse providing personalized learning guidance.\n\n' +
       'Context: ' + contextText + '\n\n' +
       'Question: ' + request.question + '\n' +
       'Correct Answer: ' + request.correctAnswer + '\n' +

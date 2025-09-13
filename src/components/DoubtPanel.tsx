@@ -91,7 +91,7 @@ export default function DoubtPanel({ courseId, context, isOpen, onClose }: Doubt
             </div>
             <div>
               <h2 className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Ask Your Doubt</h2>
-              <p className="text-white/60 text-sm mt-1">Get instant clarification from your AI tutor</p>
+              <p className="text-white/60 text-sm mt-1">Get instant clarification from your MentorVerse</p>
             </div>
           </div>
           <button
@@ -188,7 +188,7 @@ export default function DoubtPanel({ courseId, context, isOpen, onClose }: Doubt
                 <div className="relative p-6 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-400/30 rounded-2xl">
                   <h4 className="font-bold text-green-200 mb-4 flex items-center gap-2 text-lg">
                     <span className="text-2xl">💡</span>
-                    AI Tutor's Clarification:
+                    MentorVerse's Clarification:
                   </h4>
                   <div className="text-green-100 whitespace-pre-wrap leading-relaxed text-base">
                     {doubtAnswer}
@@ -226,7 +226,7 @@ export default function DoubtPanel({ courseId, context, isOpen, onClose }: Doubt
         <div className="relative z-10 p-4 border-t border-white/10 bg-gradient-to-r from-white/5 to-white/10">
           <p className="text-sm text-white/70 flex items-center gap-2">
             <span className="text-amber-400">🧠</span>
-            Your AI tutor has context from the current lesson to provide relevant clarifications.
+            Your MentorVerse has context from the current lesson to provide relevant clarifications.
           </p>
         </div>
       </div>

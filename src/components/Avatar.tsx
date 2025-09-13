@@ -93,7 +93,7 @@ const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsChar
                 <img
                   src={currentImagePath}
                   alt={`${theme.displayName} - ${avatarState}`}
-                  className="w-full h-full object-contain drop-shadow-2xl"
+                  className="w-full h-full object-contain"
                   onError={handleImageError}
                   style={{ 
                     imageRendering: 'crisp-edges',
@@ -108,27 +108,24 @@ const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsChar
                   src={currentImagePath}
                   alt={`${theme.displayName} - ${avatarState}`}
                   fill
-                  className="object-contain drop-shadow-2xl"
+                  className="object-contain"
                   onError={handleImageError}
                   priority={avatarState === 'loading'}
                 />
               )
             ) : (
               <div 
-                className="w-full h-full flex items-center justify-center relative rounded-2xl border-4 border-dashed bg-red-500/20"
+                className="w-full h-full flex items-center justify-center relative rounded-2xl"
                 style={{ 
-                  background: `linear-gradient(135deg, ${theme.colors.primary}40, ${theme.colors.accent}40)`,
-                  borderColor: theme.colors.accent,
+                  background: `linear-gradient(135deg, ${theme.colors.primary}20, ${theme.colors.accent}20)`,
+                  backdropFilter: 'blur(10px)',
+                  border: `1px solid ${theme.colors.primary}30`,
                   minHeight: '200px',
                   minWidth: '200px'
                 }}
               >
                 <div className="text-center p-4">
-                  <div className="text-red-500 font-bold mb-2">FALLBACK</div>
-                  <div 
-                    className="text-8xl font-bold mb-4"
-                    style={{ color: theme.colors.primary }}
-                  >
+                  <div className="text-8xl font-bold mb-4" style={{ color: theme.colors.primary }}>
                     {getCharacterEmoji(theme.name)}
                   </div>
                   <div className="text-lg font-semibold" style={{ color: theme.colors.accent }}>
@@ -137,7 +134,6 @@ const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsChar
                   <div className="text-sm opacity-75 capitalize mt-1" style={{ color: theme.colors.primary }}>
                     {getStateEmoji(avatarState)} {avatarState}
                   </div>
-                  <div className="text-xs mt-2 text-gray-500 break-all">Path: {currentImagePath}</div>
                 </div>
               </div>
             )}
@@ -200,23 +196,25 @@ const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsChar
           avatar-container
           flex items-center justify-center
           transition-all duration-300
+          rounded-2xl
           ${!isVisible ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}
         `}
         style={{ 
-          backgroundColor: theme.colors.primary,
-          borderColor: theme.colors.secondary,
+          background: `linear-gradient(135deg, ${theme.colors.primary}20, ${theme.colors.accent}20)`,
+          backdropFilter: 'blur(10px)',
+          border: `1px solid ${theme.colors.primary}30`,
         }}
       >
         <div className="text-center">
           <div 
             className="text-2xl font-bold mb-1"
-            style={{ color: theme.colors.secondary }}
+            style={{ color: theme.colors.primary }}
           >
             {theme.displayName.charAt(0)}
           </div>
           <div 
             className="text-xs opacity-75 capitalize"
-            style={{ color: theme.colors.secondary }}
+            style={{ color: theme.colors.accent }}
           >
             {avatarState}
           </div>
@@ -226,27 +224,22 @@ const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsChar
   }
 
   return (
-    <div 
+    <div
       className={`
-        ${sizeClasses[size]} 
+        ${sizeClasses[size]}
         ${className}
         avatar-container
         transition-all duration-300
         ${!isVisible ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}
       `}
-      style={{ 
-        borderColor: theme.colors.accent,
-        borderWidth: '2px',
-        borderStyle: 'solid',
-      }}
     >
       {isSVG ? (
         <img
           src={currentImagePath}
           alt={`${theme.displayName} - ${avatarState}`}
-          className="avatar-image w-full h-full object-cover rounded-full"
+          className="avatar-image w-full h-full object-contain"
           onError={handleImageError}
-          style={{ 
+          style={{
             imageRendering: 'crisp-edges',
             maxWidth: '100%',
             maxHeight: '100%',
@@ -258,7 +251,7 @@ const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsChar
           src={currentImagePath}
           alt={`${theme.displayName} - ${avatarState}`}
           fill
-          className="avatar-image"
+          className="avatar-image rounded-full"
           onError={handleImageError}
           priority={avatarState === 'loading'}
           sizes={`${sizeClasses[size].split(' ')[0]}`}
@@ -267,7 +260,8 @@ const Avatar: React.FC<AvatarProps> = ({ size = 'lg', className = '', showAsChar
       
       {/* Loading indicator for loading state */}
       {avatarState === 'loading' && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 rounded-full">
+        <div className="absolute inset-0 flex items-center justify-center rounded-full"
+             style={{ background: `${theme.colors.primary}20`, backdropFilter: 'blur(5px)' }}>
           <div 
             className="w-6 h-6 border-2 border-t-transparent rounded-full animate-spin"
             style={{ borderColor: theme.colors.secondary }}
@@ -303,13 +297,13 @@ export const AvatarStateIndicator: React.FC<{ className?: string }> = ({ classNa
 
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      <span className="text-lg">{config.icon}</span>
-      <span 
+      {/* <span className="text-lg">{config.icon}</span> */}
+      {/* <span 
         className="text-sm font-medium"
         style={{ color: config.color }}
       >
         {config.label}
-      </span>
+      </span> */}
     </div>
   );
 };

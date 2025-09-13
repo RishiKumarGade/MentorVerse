@@ -125,7 +125,7 @@ export const useStore = create<AppState>()(
         setUser: (user) => set({ user }),
         
         // Theme Management
-        currentTheme: defaultThemes[0], // Batman as default
+        currentTheme: defaultThemes[2], // Minimal as default (professional style)
         availableThemes: defaultThemes,
         setTheme: (theme) => set({ currentTheme: theme }),
         

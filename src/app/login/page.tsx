@@ -118,7 +118,7 @@ export default function LoginPage() {
 
         <div className="text-center">
           <p className="text-sm text-gray-600">
-            New to AI Tutor? Your account will be created automatically.
+            New to MentorVerse? Your account will be created automatically.
           </p>
         </div>
       </div>

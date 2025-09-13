@@ -4,7 +4,7 @@ import { CourseGenerationRequest, CourseOutlineResponse, SubtopicContentRequest,
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY as string);
 
 // Course Generation Prompts
-const COURSE_OUTLINE_SYSTEM_PROMPT = `You are an expert AI tutor that creates comprehensive course outlines and syllabi.
+const COURSE_OUTLINE_SYSTEM_PROMPT = `You are an expert MentorVerse that creates comprehensive course outlines and syllabi.
 You must output content in strict JSON format.
 
 Your goal is to create a well-structured learning syllabus that includes:
@@ -16,7 +16,7 @@ Your goal is to create a well-structured learning syllabus that includes:
 Focus on creating a clear, logical learning path without generating detailed content yet.
 The detailed explanations and questions will be generated separately for each subtopic.`;
 
-const SUBTOPIC_CONTENT_SYSTEM_PROMPT = `You are an expert AI tutor creating detailed learning content for a specific subtopic.
+const SUBTOPIC_CONTENT_SYSTEM_PROMPT = `You are an expert MentorVerse creating detailed learning content for a specific subtopic.
 You must output content in strict JSON format.
 
 Your goal is to create comprehensive, engaging content that includes:
@@ -27,7 +27,7 @@ Your goal is to create comprehensive, engaging content that includes:
 
 Make the content practical, engaging, and appropriate for the user's level.`;
 
-const TOPIC_QUIZ_SYSTEM_PROMPT = `You are an expert AI tutor creating comprehensive quiz questions for a complete topic.
+const TOPIC_QUIZ_SYSTEM_PROMPT = `You are an expert MentorVerse creating comprehensive quiz questions for a complete topic.
 You must output content in strict JSON format.
 
 Your goal is to create assessment questions that:
@@ -38,7 +38,7 @@ Your goal is to create assessment questions that:
 
 Create questions that truly assess mastery of the topic.`;
 
-const DOUBT_CLARIFICATION_SYSTEM_PROMPT = `You are an AI tutor helping students clarify their doubts. 
+const DOUBT_CLARIFICATION_SYSTEM_PROMPT = `You are an MentorVerse helping students clarify their doubts. 
 Provide clear, concise explanations based on the context provided.
 Answer in a conversational, encouraging tone.
 Keep your response focused and helpful.`;
@@ -353,7 +353,7 @@ export async function generateMCQSuggestion(request: {
     
     const contextText = request.context.join(' ');
     
-    const prompt = `You are a helpful AI tutor providing personalized learning guidance.
+    const prompt = `You are a helpful MentorVerse providing personalized learning guidance.
 
 Context: ${contextText}
 

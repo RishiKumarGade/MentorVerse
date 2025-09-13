@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import { useStore } from '@/store/useStore';
+import { useStore, useTheme } from '@/store/useStore';
 import ThemeSelector from '@/components/ThemeSelector';
 import Avatar, { AvatarStateIndicator } from '@/components/Avatar';
 import LearningSession from '@/components/LearningSession';
@@ -12,6 +12,7 @@ import { Course } from '@/types';
 export default function Home() {
   const { data: session, status } = useSession();
   const { setUser, setAvatarState } = useStore();
+  const currentTheme = useTheme();
   const [currentView, setCurrentView] = useState<'home' | 'learning'>('home');
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [isGeneratingCourse, setIsGeneratingCourse] = useState(false);
@@ -128,15 +129,19 @@ export default function Home() {
 
   // Show learning session if active
   if (currentView === 'learning' && selectedCourse) {
-    return <LearningSession course={selectedCourse} onExit={exitLearningSession} />;
+    return (
+      <div className="min-h-screen w-full" style={{ background: `linear-gradient(to bottom right, ${currentTheme.colors.primary}20, ${currentTheme.colors.secondary}20, ${currentTheme.colors.accent}20)` }}>
+        <LearningSession course={selectedCourse} onExit={exitLearningSession} />
+      </div>
+    );
   }
 
   if (status === 'loading') {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading AI Tutor...</p>
+          <div className="w-16 h-16 border-4 border-t-transparent rounded-full animate-spin mx-auto mb-4" style={{ borderColor: currentTheme.colors.primary, borderTopColor: 'transparent' }}></div>
+          <p className="text-gray-600">Loading MentorVerse...</p>
         </div>
       </div>
     );
@@ -144,14 +149,14 @@ export default function Home() {
 
   if (!session) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: `linear-gradient(to bottom right, ${currentTheme.colors.primary}20, ${currentTheme.colors.secondary}20)` }}>
         <div className="max-w-md w-full mx-4">
           <div className="learning-card text-center">
             <div className="mb-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: `linear-gradient(to bottom right, ${currentTheme.colors.primary}, ${currentTheme.colors.secondary})` }}>
                 <BookOpenIcon className="w-10 h-10 text-white" />
               </div>
-              <h1 className="text-3xl font-bold text-gray-800 mb-2">AI Tutor</h1>
+              <h1 className="text-3xl font-bold text-gray-800 mb-2">MentorVerse</h1>
               <p className="text-gray-600">
                 Personalized learning with avatar companions
               </p>
@@ -159,22 +164,23 @@ export default function Home() {
 
             <div className="space-y-4 mb-6">
               <div className="flex items-center gap-3 text-sm text-gray-600">
-                <PlayIcon className="w-4 h-4 text-blue-500" />
+                <PlayIcon className="w-4 h-4" style={{ color: currentTheme.colors.primary }} />
                 <span>Interactive learning sessions</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-gray-600">
-                <UserIcon className="w-4 h-4 text-indigo-500" />
+                <UserIcon className="w-4 h-4" style={{ color: currentTheme.colors.secondary }} />
                 <span>Theme-based avatar companions</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-gray-600">
-                <SearchIcon className="w-4 h-4 text-purple-500" />
+                <SearchIcon className="w-4 h-4" style={{ color: currentTheme.colors.accent }} />
                 <span>AI-generated personalized courses</span>
               </div>
             </div>
 
             <button
               onClick={() => signIn('google')}
-              className="w-full theme-button primary-button flex items-center justify-center gap-2"
+              className="w-full theme-button flex items-center justify-center gap-2"
+              style={{ backgroundColor: currentTheme.colors.primary, color: 'white' }}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -195,16 +201,16 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen gradient-bg">
+    <div className="min-h-screen" style={{ background: `linear-gradient(to bottom right, ${currentTheme.colors.primary}10, ${currentTheme.colors.secondary}10, ${currentTheme.colors.accent}10)` }}>
       {/* Header */}
       <header className="glass-card sticky top-0 z-50 border-b backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-4">
-              <div className="p-2 bg-blue-600 rounded-lg">
+              <div className="p-2 rounded-lg" style={{ backgroundColor: currentTheme.colors.primary }}>
                 <BookOpenIcon className="w-6 h-6 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">AI Tutor</h1>
+              <h1 className="text-2xl font-bold text-gray-900">MentorVerse</h1>
             </div>
             
             <div className="flex items-center gap-4">
@@ -281,7 +287,7 @@ export default function Home() {
           <div className="lg:col-span-2">
             <div className="learning-card">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg">
+                <div className="p-2 rounded-lg" style={{ background: `linear-gradient(to right, ${currentTheme.colors.primary}, ${currentTheme.colors.secondary})` }}>
                   <SparklesIcon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900">
@@ -335,7 +341,8 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={isGeneratingCourse}
-                  className="w-full theme-button primary-button py-4 text-lg font-bold flex items-center justify-center gap-3 disabled:opacity-50"
+                  className="w-full theme-button py-4 text-lg font-bold flex items-center justify-center gap-3 disabled:opacity-50"
+                  style={{ backgroundColor: currentTheme.colors.primary, color: 'white' }}
                 >
                   {isGeneratingCourse ? (
                     <>
@@ -358,7 +365,7 @@ export default function Home() {
             {/* My Courses */}
             <div className="learning-card">
               <h4 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <BookOpenIcon className="w-5 h-5 text-blue-600" />
+                <BookOpenIcon className="w-5 h-5" style={{ color: currentTheme.colors.primary }} />
                 My Courses ({userCourses.length})
               </h4>
               <div className="space-y-3 max-h-64 overflow-y-auto">
@@ -384,7 +391,7 @@ export default function Home() {
                 )}
               </div>
               {userCourses.length > 3 && (
-                <button className="w-full mt-3 text-blue-600 hover:text-blue-700 text-sm font-medium">
+                <button className="w-full mt-3 text-sm font-medium" style={{ color: currentTheme.colors.primary }}>
                   View all {userCourses.length} courses
                 </button>
               )}
@@ -392,11 +399,11 @@ export default function Home() {
 
             {/* Quick Actions */}
             <div className="grid grid-cols-2 gap-3">
-              <button className="animated-card bg-gradient-to-br from-green-400 to-green-600 text-white p-4 rounded-xl text-center">
+              <button className="animated-card text-white p-4 rounded-xl text-center" style={{ background: `linear-gradient(to bottom right, ${currentTheme.colors.primary}, ${currentTheme.colors.secondary})` }}>
                 <PlayIcon className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-sm font-medium">Continue Learning</div>
               </button>
-              <button className="animated-card bg-gradient-to-br from-purple-400 to-purple-600 text-white p-4 rounded-xl text-center">
+              <button className="animated-card text-white p-4 rounded-xl text-center" style={{ background: `linear-gradient(to bottom right, ${currentTheme.colors.secondary}, ${currentTheme.colors.accent})` }}>
                 <SearchIcon className="w-8 h-8 mx-auto mb-2" />
                 <div className="text-sm font-medium">Explore Courses</div>
               </button>
@@ -408,7 +415,7 @@ export default function Home() {
         {userCourses.length > 0 && (
           <div className="learning-card">
             <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <UserIcon className="w-6 h-6 text-indigo-600" />
+              <UserIcon className="w-6 h-6" style={{ color: currentTheme.colors.primary }} />
               Your Learning Journey
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -423,7 +430,7 @@ export default function Home() {
                   <div className="flex items-center justify-between text-sm">
                     <div className="flex gap-2">
                       {course.tags.slice(0, 2).map((tag, idx) => (
-                        <span key={idx} className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">
+                        <span key={idx} className="px-2 py-1 rounded-full text-xs" style={{ backgroundColor: currentTheme.colors.primary + '20', color: currentTheme.colors.primary }}>
                           {tag}
                         </span>
                       ))}
